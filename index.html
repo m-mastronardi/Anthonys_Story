@@ -6,13 +6,6 @@
   <title>Anthony's Story</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
   <style>
-    /* ============================================================
-       ANTHONY'S STORY — index.html
-       Hosted on GitHub Pages. Edit this file in VS Code and push
-       to update the live site. No login needed — only you control
-       the repo.
-    ============================================================ */
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -35,7 +28,7 @@
       overflow-x: hidden;
     }
 
-    /* ── SCROLL FADE UTILITY ── */
+    /* ── SCROLL FADE ── */
     .reveal {
       opacity: 0;
       transform: translateY(30px);
@@ -48,7 +41,7 @@
     ============================================================ */
     .hero {
       position: relative;
-      min-height: 100vh;
+      min-height: 100svh;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -66,7 +59,6 @@
         linear-gradient(170deg, #0d1b2a 0%, #091420 100%);
     }
 
-    /* subtle ice-rink grid lines */
     .hero-bg::after {
       content: '';
       position: absolute; inset: 0;
@@ -90,7 +82,7 @@
     .hero h1 {
       position: relative;
       font-family: 'Playfair Display', serif;
-      font-size: clamp(3.4rem, 11vw, 7.5rem);
+      font-size: clamp(3rem, 13vw, 7.5rem);
       font-weight: 900;
       line-height: .95;
       letter-spacing: -.025em;
@@ -101,7 +93,7 @@
     .hero-sub {
       position: relative;
       margin-top: 26px;
-      font-size: clamp(1rem, 2.4vw, 1.18rem);
+      font-size: clamp(.95rem, 2.4vw, 1.18rem);
       font-weight: 300;
       color: var(--muted);
       max-width: 520px;
@@ -140,7 +132,7 @@
     /* ============================================================
        SHARED SECTION STYLES
     ============================================================ */
-    section { padding: 88px 24px; }
+    section { padding: 72px 20px; }
 
     .container { max-width: 1080px; margin: 0 auto; }
 
@@ -152,7 +144,7 @@
 
     .title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 5vw, 3.1rem);
+      font-size: clamp(1.8rem, 6vw, 3.1rem);
       font-weight: 700; line-height: 1.12; margin-bottom: 18px;
     }
 
@@ -188,19 +180,11 @@
       border: 1px solid rgba(201,168,76,.15);
     }
 
-    /* ============================================================
-       TO ADD ANTHONY'S PHOTO:
-         1. Save your image in the same folder as this file.
-            Recommended filename:  anthony.jpg
-         2. Replace the src below with your filename.
-         3. Save and push to GitHub.
-    ============================================================ */
     .bio-photo img {
       width: 100%; height: 100%;
       object-fit: cover; display: block;
     }
 
-    /* Shown when no photo src is set */
     .bio-photo-placeholder {
       width: 100%; height: 100%;
       display: flex; flex-direction: column;
@@ -251,6 +235,7 @@
       padding: 14px 22px;
       background: rgba(0,0,0,.45);
       border-bottom: 1px solid rgba(255,255,255,.05);
+      flex-wrap: wrap; gap: 8px;
     }
 
     .pdf-topbar-label {
@@ -258,36 +243,10 @@
       text-transform: uppercase; color: var(--faint);
     }
 
-    /* ============================================================
-       TO EMBED THE PDF ARTICLE:
-         Option A — Embed directly (recommended for GitHub Pages):
-           1. Save your PDF in the same folder, e.g. article.pdf
-           2. Set the <iframe src> below to "article.pdf"
-           3. The <div class="pdf-empty"> will auto-hide.
-
-         Option B — Link to it instead:
-           Replace the iframe block with:
-           <a class="pdf-link-btn" href="article.pdf" target="_blank">
-             Read the Full Article →
-           </a>
-    ============================================================ */
-
     .pdf-iframe {
-      width: 100%; height: 720px;
+      width: 100%; height: 600px;
       border: none; display: block;
     }
-
-    /* Shows when src is blank — remove once you add the PDF */
-    .pdf-empty {
-      min-height: 240px;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 12px; padding: 48px;
-      color: rgba(201,168,76,.2);
-      font-size: .78rem; letter-spacing: .1em; text-transform: uppercase;
-    }
-
-    .pdf-empty span:first-child { font-size: 3rem; opacity: .2; }
 
     .pdf-link-btn {
       display: inline-block;
@@ -304,46 +263,106 @@
     .pdf-link-btn:hover { background: rgba(201,168,76,.26); }
 
     /* ============================================================
-       VIDEO SECTION
+       VIDEO CAROUSEL SECTION
     ============================================================ */
-    .video-wrap {
-      position: relative; width: 100%;
-      border-radius: 14px; overflow: hidden;
-      background: rgba(255,255,255,.03);
-      border: 1px solid rgba(201,168,76,.12);
-      display: flex; flex-direction: column; gap: 10px; padding: 10px;
+    .video-section-inner { position: relative; }
+
+    /* Carousel track */
+    .video-carousel {
+      position: relative;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid rgba(201,168,76,.18);
+      background: rgba(0,0,0,.4);
     }
 
-    .video-wrap iframe, .video-wrap video {
-      width: 100%; height: auto; border: none;
+    .video-track {
+      display: flex;
+      transition: transform .45s cubic-bezier(.4,0,.2,1);
+      will-change: transform;
     }
 
-    /* Shown when no video is set yet */
-    .video-empty {
-      position: absolute; inset: 0;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 10px; color: rgba(201,168,76,.22);
-      font-size: .78rem; letter-spacing: .1em; text-transform: uppercase;
+    .video-slide {
+      flex: 0 0 100%;
+      width: 100%;
     }
 
-    .video-empty span:first-child { font-size: 3.2rem; opacity: .2; }
+    .video-slide video,
+    .video-slide iframe {
+      width: 100%;
+      display: block;
+      border: none;
+      /* Responsive 16:9 height */
+      aspect-ratio: 16/9;
+      object-fit: contain;
+      background: #000;
+    }
 
-    /* ============================================================
-       TO EMBED A VIDEO:
-         YouTube:
-           1. Go to your YouTube video
-           2. Click Share → Embed
-           3. Copy the <iframe> tag
-           4. Paste it inside <div class="video-wrap"> below,
-              replacing the existing iframe (or the .video-empty div)
+    /* Caption bar under each video */
+    .video-caption {
+      padding: 14px 20px;
+      background: rgba(0,0,0,.55);
+      border-top: 1px solid rgba(255,255,255,.05);
+      font-size: .82rem;
+      color: var(--muted);
+      letter-spacing: .04em;
+      min-height: 48px;
+    }
 
-         Or just replace VIDEO_ID below with your YouTube video ID:
-           src="https://www.youtube.com/embed/VIDEO_ID"
+    /* Nav controls */
+    .video-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 22px;
+    }
 
-         Vimeo:
-           src="https://player.vimeo.com/video/VIDEO_ID"
-    ============================================================ */
+    .vc-btn {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,.38);
+      background: rgba(201,168,76,.10);
+      color: var(--gold);
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, transform .15s;
+      /* Large tap target on mobile */
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .vc-btn:hover { background: rgba(201,168,76,.24); }
+    .vc-btn:active { transform: scale(.93); }
+    .vc-btn:disabled { opacity: .3; cursor: not-allowed; }
+
+    .vc-dots {
+      display: flex; gap: 8px;
+    }
+
+    .vc-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(201,168,76,.25);
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+      border: none;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .vc-dot.active {
+      background: var(--gold);
+      transform: scale(1.35);
+    }
+
+    .vc-counter {
+      font-size: .78rem;
+      color: var(--faint);
+      letter-spacing: .1em;
+      min-width: 48px;
+      text-align: center;
+    }
 
     /* ============================================================
        PHOTO GALLERY
@@ -372,7 +391,6 @@
 
     .photo-cell:hover img { transform: scale(1.04); }
 
-    /* Empty cell style — remove once photos are added */
     .photo-cell-empty {
       width: 100%; height: 100%;
       display: flex; flex-direction: column;
@@ -382,15 +400,6 @@
     }
 
     .photo-cell-empty span:first-child { font-size: 1.8rem; opacity: .2; }
-
-    /* ============================================================
-       TO ADD PHOTOS:
-         1. Save your images in the same folder (e.g. photo1.jpg)
-         2. In each <div class="photo-cell"> below,
-            replace the .photo-cell-empty div with:
-            <img src="photo1.jpg" alt="Description of photo" />
-         3. Repeat for each cell. Add or remove cells as needed.
-    ============================================================ */
 
     /* ============================================================
        GOLF OUTING CALLOUT
@@ -406,7 +415,7 @@
 
     .callout h3 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.7rem, 4vw, 2.5rem);
+      font-size: clamp(1.5rem, 5vw, 2.5rem);
       font-weight: 700; margin-bottom: 16px;
     }
 
@@ -414,12 +423,6 @@
       color: var(--muted); max-width: 500px;
       margin: 0 auto 28px;
     }
-
-    /* ============================================================
-       TO UPDATE THE "GET INVOLVED" EMAIL LINK:
-         Replace the href below with your actual email address.
-         e.g.  href="mailto:your@email.com?subject=Anthony's Golf Outing"
-    ============================================================ */
 
     /* ============================================================
        FOOTER
@@ -435,16 +438,34 @@
        RESPONSIVE
     ============================================================ */
     @media (max-width: 760px) {
-      .bio-grid { grid-template-columns: 1fr; }
-      .bio-photo { aspect-ratio: 4/3; max-height: 340px; }
-      .stats-bar { grid-template-columns: 1fr; gap: 28px; padding: 36px 28px; }
-      .photo-grid { grid-template-columns: repeat(2,1fr); }
-      .callout { padding: 40px 24px; }
+      section { padding: 56px 16px; }
+
+      .bio-grid { grid-template-columns: 1fr; gap: 36px; }
+      .bio-photo { aspect-ratio: 4/3; max-height: 320px; order: -1; }
+
+      .stats-bar {
+        grid-template-columns: 1fr;
+        gap: 28px; padding: 32px 24px;
+      }
+
+      .pdf-iframe { height: 420px; }
+
+      .photo-grid { grid-template-columns: repeat(2,1fr); gap: 10px; }
+
+      .callout { padding: 36px 20px; }
+
+      .vc-btn { width: 40px; height: 40px; font-size: 1rem; }
     }
 
     @media (max-width: 480px) {
       .photo-grid { grid-template-columns: 1fr; }
+      .pdf-iframe { height: 320px; }
+      .stats-bar { padding: 28px 18px; }
     }
+
+    /* Touch-friendly tap size everywhere */
+    a, button { min-height: 44px; }
+    .vc-dot { min-width: 24px; min-height: 24px; display: flex; align-items: center; justify-content: center; }
   </style>
 </head>
 <body>
@@ -454,20 +475,13 @@
   ============================================================ -->
   <header class="hero">
     <div class="hero-bg"></div>
-
-    <!-- EDIT: Change this tagline if you like -->
     <div class="hero-eyebrow">More Than a Game</div>
-
     <h1>Anthony's<br /><em>Story</em></h1>
-
-    <!-- EDIT: Update this subtitle any time -->
     <p class="hero-sub">
-      Isaiah 41:10 - So do not fear, for I am with you; do not be dismayed, for I am your God. I will 
-      strengthen you and help you; I will uphold you with my righteous right hand.
+      Isaiah 41:10 — So do not fear, for I am with you; do not be dismayed, for I am your God.
+      I will strengthen you and help you; I will uphold you with my righteous right hand.
     </p>
-
     <div class="hero-rule"></div>
-
     <div class="scroll-cue">
       Scroll
       <span class="scroll-cue-line"></span>
@@ -486,36 +500,32 @@
           <p class="label">About Anthony</p>
           <h2 class="title">The Mission</h2>
           <div class="rule"></div>
-
-          <!-- EDIT: Update Anthony's bio here -->
           <p class="body-text">
-          Anthony Mastronardi’s story is one of resilience, faith, and the power of community. 
-          In December 2016, while playing in a high school hockey game for Macomb Dakota, Anthony 
-          suffered a devastating spinal cord injury that left him paralyzed from the neck down after 
-          crashing into the boards. What followed was a long and difficult road filled with surgeries,
-           rehabilitation, and the challenge of learning how to live with a life-changing injury.
+            Anthony Mastronardi's story is one of resilience, faith, and the power of community.
+            In December 2016, while playing in a high school hockey game for Macomb Dakota, Anthony
+            suffered a devastating spinal cord injury that left him paralyzed from the neck down after
+            crashing into the boards. What followed was a long and difficult road filled with surgeries,
+            rehabilitation, and the challenge of learning how to live with a life-changing injury.
           </p>
           <p class="body-text">
             Despite the obstacles, Anthony approached recovery the same way he approached hockey —
-             with determination, patience, and relentless effort. Through months of intensive therapy, 
-             he worked tirelessly to regain strength and independence while staying positive and focused 
-             on progress.
+            with determination, patience, and relentless effort. Through months of intensive therapy,
+            he worked tirelessly to regain strength and independence while staying positive and focused
+            on progress.
           </p>
           <p class="body-text">
-            Anthony’s journey quickly became bigger than one person. The hockey community rallied around 
-            him in extraordinary ways, organizing fundraising events, charity games, and support efforts 
+            Anthony's journey quickly became bigger than one person. The hockey community rallied around
+            him in extraordinary ways, organizing fundraising events, charity games, and support efforts
             that brought together teammates, families, coaches, and fans from across Michigan.
           </p>
           <p class="body-text">
-            Today, Anthony’s story represents more than an injury — it represents perseverance, hope, 
+            Today, Anthony's story represents more than an injury — it represents perseverance, hope,
             and the incredible impact of a community that refuses to let one of its own fight alone.
           </p>
         </div>
 
-        <!-- EDIT: Replace "anthony.jpg" with your actual image filename -->
         <div class="bio-photo">
-          <!-- Once you have a photo, replace the div below with:
-               <img src="anthony.jpg" alt="Anthony" />             -->
+          <!-- Replace with: <img src="anthony.jpg" alt="Anthony" /> -->
           <div class="bio-photo-placeholder">
             <span>🏒</span>
             <span>Photo coming soon</span>
@@ -533,8 +543,6 @@
   <section style="padding-top: 0;">
     <div class="container reveal">
       <div class="stats-bar">
-
-        <!-- EDIT: Update these numbers each year -->
         <div>
           <div class="stat-num">10</div>
           <div class="stat-label">Years of Recovery</div>
@@ -547,7 +555,6 @@
           <div class="stat-num">1</div>
           <div class="stat-label">Incredible Community</div>
         </div>
-
       </div>
     </div>
   </section>
@@ -564,21 +571,30 @@
       <p class="body-text" style="max-width:560px; margin-bottom:32px;">
         2017 Detroit Free Press Article — The original coverage of Anthony's journey.
       </p>
-
       <div class="pdf-shell">
         <div class="pdf-topbar">
           <span class="pdf-topbar-label">📰 &nbsp; Anthony's Article</span>
         </div>
-
         <iframe class="pdf-iframe" src="2017 Detroit Free Press Article_Anthony Mastronardi.pdf" title="Anthony's Story Article"></iframe>
-
       </div>
     </div>
   </section>
 
 
   <!-- ============================================================
-       VIDEO
+       VIDEO CAROUSEL
+       HOW TO ADD / REMOVE VIDEOS:
+         Each video is a <div class="video-slide"> inside .video-track.
+         For a local MP4:
+           <video controls playsinline>
+             <source src="assets/your-video.mp4" type="video/mp4">
+           </video>
+         For YouTube:
+           <iframe src="https://www.youtube.com/embed/VIDEO_ID"
+                   allowfullscreen allow="autoplay; encrypted-media"></iframe>
+         Add a <div class="video-caption"> after each video with a short title.
+         The carousel JS below handles everything automatically —
+         just add or remove slides and it recounts.
   ============================================================ -->
   <section>
     <div class="container reveal">
@@ -586,21 +602,54 @@
       <h2 class="title">Watch His <em>Journey</em></h2>
       <div class="rule"></div>
       <p class="body-text" style="max-width:560px; margin-bottom:32px;">
-        A video capturing Anthony's incredible progress over the years.
+        Videos capturing Anthony's incredible progress over the years. 
       </p>
 
-      <div class="video-wrap">
+      <div class="video-section-inner">
+        <div class="video-carousel" id="videoCarousel">
+          <div class="video-track" id="videoTrack">
 
-        <video controls>
-          <source src="assets/Golf outing Video 2024.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
+            <!-- ── SLIDE 1 ── -->
+            <div class="video-slide">
+              <iframe
+                src="https://drive.google.com/file/d/1zBwwPvdeha9L9H0yFahNrnGmNV1bQXwy/preview"
+                allowfullscreen
+                allow="autoplay">
+              </iframe>
+              <div class="video-caption">Progress from 2016 - 2024</div>
+            </div>
 
-       <!-- <video controls>
-          <source src="assets/New_video.mov" type="video/quicktime">
-          Your browser does not support the video tag.
-        </video>-->
+            <!-- ── SLIDE 2 ── Add your second video here -->
+            <div class="video-slide">
+              <iframe
+                src="https://drive.google.com/file/d/1TFfDCtoCTWlcs9X37Ylc2OBieVRkanGP/preview"
+                allowfullscreen
+                allow="autoplay">
+              </iframe>
+              <div class="video-caption">Progress from 2025 </div>
+            </div>
 
+
+            <!-- ── SLIDE 3 ── Add your third video here 
+            <div class="video-slide">
+              <video controls playsinline preload="metadata">
+                <source src="assets/video3.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <div class="video-caption">Video Title — Year</div>
+            </div>
+-->
+            <!-- ── Add more slides as needed by duplicating a block above ── -->
+
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="video-controls">
+          <button class="vc-btn" id="vcPrev" aria-label="Previous video">&#8592;</button>
+          <div class="vc-dots" id="vcDots"></div>
+          <button class="vc-btn" id="vcNext" aria-label="Next video">&#8594;</button>
+        </div>
       </div>
     </div>
   </section>
@@ -618,47 +667,25 @@
         Photos from the hockey days, the golf outings, and everything in between.
       </p>
 
-      <!-- ── HOW TO ADD PHOTOS ─────────────────────────────────
-           1. Copy your photos into this folder.
-              Suggested names: photo1.jpg, photo2.jpg, etc.
-           2. In each cell, replace the .photo-cell-empty div with:
-              <img src="photo1.jpg" alt="Brief description" />
-           3. Add or remove <div class="photo-cell"> blocks to
-              change how many photos appear. Any number works.
-      ─────────────────────────────────────────────────────── -->
-
       <div class="photo-grid">
-
         <div class="photo-cell">
-          <!-- Replace with: <img src="photo1.jpg" alt="..." /> -->
           <div class="photo-cell-empty"><span>＋</span><span>Add photo</span></div>
         </div>
-
         <div class="photo-cell">
-          <!-- Replace with: <img src="photo2.jpg" alt="..." /> -->
           <div class="photo-cell-empty"><span>＋</span><span>Add photo</span></div>
         </div>
-
         <div class="photo-cell">
-          <!-- Replace with: <img src="photo3.jpg" alt="..." /> -->
           <div class="photo-cell-empty"><span>＋</span><span>Add photo</span></div>
         </div>
-
         <div class="photo-cell">
-          <!-- Replace with: <img src="photo4.jpg" alt="..." /> -->
           <div class="photo-cell-empty"><span>＋</span><span>Add photo</span></div>
         </div>
-
         <div class="photo-cell">
-          <!-- Replace with: <img src="photo5.jpg" alt="..." /> -->
           <div class="photo-cell-empty"><span>＋</span><span>Add photo</span></div>
         </div>
-
         <div class="photo-cell">
-          <!-- Replace with: <img src="photo6.jpg" alt="..." /> -->
           <div class="photo-cell-empty"><span>＋</span><span>Add photo</span></div>
         </div>
-
       </div>
     </div>
   </section>
@@ -672,15 +699,11 @@
       <div class="callout">
         <span class="callout-icon">⛳</span>
         <h3>Anthony's Annual Golf Outing</h3>
-
-        <!-- EDIT: Update outing details here each year -->
-        <p style="font-size: 1.2em;">
+        <p style="font-size: 1.1em;">
           Anthony was fitted this December for leg braces, as he continues to make great strides towards
-      his will to walk again. As in years past, all funds raised will go directly toward Anthony’s
-      continued therapy (not covered by insurance). We thank you all for your generosity and prayers.
+          his will to walk again. As in years past, all funds raised will go directly toward Anthony's
+          continued therapy (not covered by insurance). We thank you all for your generosity and prayers.
         </p>
-
-        <!-- EDIT: HHH website -->
         <a class="pdf-link-btn" href="https://www.hockeyhasheart.org/hhh-events/2026/6/12/10th-annual-persetto-classic" target="_blank">
           Learn More About Our Event &rarr;
         </a>
@@ -693,25 +716,91 @@
        FOOTER
   ============================================================ -->
   <footer>
-    <!-- EDIT: Update year or message as you like -->
     <p>Made with love for Anthony &nbsp;·&nbsp; Every year, together.</p>
   </footer>
 
 
   <!-- ============================================================
-       SCROLL REVEAL SCRIPT — no need to edit this
+       SCRIPTS
   ============================================================ -->
   <script>
-    const observer = new IntersectionObserver((entries) => {
+    /* ── SCROLL REVEAL ── */
+    const revealObs = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
           e.target.classList.add('visible');
-          observer.unobserve(e.target);
+          revealObs.unobserve(e.target);
         }
       });
-    }, { threshold: 0.10 });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* ── VIDEO CAROUSEL ── */
+    (function () {
+      const track   = document.getElementById('videoTrack');
+      const slides  = track ? Array.from(track.querySelectorAll('.video-slide')) : [];
+      const prevBtn = document.getElementById('vcPrev');
+      const nextBtn = document.getElementById('vcNext');
+      const dotsWrap = document.getElementById('vcDots');
+
+      if (!slides.length) return;
+
+      let current = 0;
+      const total = slides.length;
+
+      /* Build dots */
+      slides.forEach((_, i) => {
+        const d = document.createElement('button');
+        d.className = 'vc-dot' + (i === 0 ? ' active' : '');
+        d.setAttribute('aria-label', 'Go to video ' + (i + 1));
+        d.addEventListener('click', () => goTo(i));
+        dotsWrap.appendChild(d);
+      });
+
+      function pauseAll() {
+        slides.forEach(s => {
+          const v = s.querySelector('video');
+          if (v) v.pause();
+          const f = s.querySelector('iframe');
+          /* pause YouTube by reloading src */
+          if (f) { const src = f.src; f.src = ''; f.src = src; }
+        });
+      }
+
+      function goTo(idx) {
+        pauseAll();
+        current = idx;
+        track.style.transform = `translateX(-${current * 100}%)`;
+
+        /* update dots */
+        dotsWrap.querySelectorAll('.vc-dot').forEach((d, i) => {
+          d.classList.toggle('active', i === current);
+        });
+
+        /* update buttons */
+        prevBtn.disabled = current === 0;
+        nextBtn.disabled = current === total - 1;
+      }
+
+      prevBtn.addEventListener('click', () => { if (current > 0) goTo(current - 1); });
+      nextBtn.addEventListener('click', () => { if (current < total - 1) goTo(current + 1); });
+
+      /* Swipe support */
+      let touchStartX = 0;
+      const carousel = document.getElementById('videoCarousel');
+      carousel.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+      carousel.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 50) {
+          if (dx < 0 && current < total - 1) goTo(current + 1);
+          if (dx > 0 && current > 0) goTo(current - 1);
+        }
+      }, { passive: true });
+
+      /* Init */
+      goTo(0);
+    })();
   </script>
 
 </body>
